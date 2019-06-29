@@ -1,0 +1,15 @@
+import { Router } from 'express'
+import { master, token } from '../../services/passport'
+import { create } from './controller'
+import multer from 'multer'
+
+const upload = multer({dest: 'uploads/'})
+
+const router = new Router()
+router.get('/', (req, res) => res.send('GET LIST USER'))
+router.get('/:id', (req, res) => res.send('GET USER DETAIL'))
+router.post('/', upload.single('avatar'),create)
+router.put('/', (req, res) => res.send('PUT USER'))
+router.delete('/', (req, res) => res.send('DELTE USER'))
+
+export default router
